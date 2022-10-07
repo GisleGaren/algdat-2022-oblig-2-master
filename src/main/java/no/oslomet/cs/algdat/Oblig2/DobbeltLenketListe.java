@@ -268,23 +268,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         int elementer = liste.antall();
 
         if(!liste.tom()) {
-            //maks-metoden
+            //boblesortering
             int mi = 0;
             T mv = liste.hent(0);
-            //boblesortering
-            /*
-            for (int n = elementer; n > 1; n--) {
+
+            for (int n = elementer; n > 1; n--) {           //Intervallgrense
                 for (int i = 1; i < n; i++) {
-                    if (c.compare(liste.hent(i), mi) > 0) {
-                        //mi =
+                    if (c.compare(liste.hent(i - 1), liste.hent(i)) > 0) {
+                        mv = liste.hent(i);
+                        mi = i;
                     }
+                    T tempP = liste.hent(mi);
+                    T tempQ = liste.hent(i-1);
+                    liste.oppdater(mi, tempQ);
+                    liste.oppdater(i-1,mv);
                 }
             }
-
-             */
         }
         // throw new UnsupportedOperationException();
     }
+
 
 } // class DobbeltLenketListe
 
