@@ -69,7 +69,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
     }
 
-    private Node<T> finnNode(int indeks){
+    private Node<T> finnNode(int indeks){ //
         Node<T> p = hode;
         Node<T> q = hale;
         if(indeks < (antall/2)){
