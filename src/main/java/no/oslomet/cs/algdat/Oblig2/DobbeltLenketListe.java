@@ -3,7 +3,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
-
+// Test 123
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
