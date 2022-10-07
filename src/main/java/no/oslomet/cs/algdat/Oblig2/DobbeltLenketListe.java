@@ -158,7 +158,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p = finnNode(indeks);
         T gammelVerdi = p.verdi;
 
-        p.verdi = nyverdi;
+        p.verdi = nyverdi; // kommentar
         return gammelVerdi;
     }
 
