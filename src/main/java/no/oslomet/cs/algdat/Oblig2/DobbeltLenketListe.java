@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 // Test 123
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 
@@ -191,15 +192,62 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return gammelVerdi;
     }
 
+    // Oppgave 6 del 2
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+
+        if(antall == 0){
+            throw new IndexOutOfBoundsException("Indeks out of bounds fordi listen er tom!");
+        }
+
+        if (verdi == null){
+            return false;          // ingen nullverdier i listen
+        }
+
+        Node<T> q = hode, p = null;               // hjelpepekere
+
+        while (q != null)                         // q skal finne verdien t
+        {
+            if (q.verdi.equals(verdi)){
+                break;       // verdien funnet
+            }
+            p = q; q = q.neste;                     // p er forgjengeren til q
+        }
+        if(q == null){
+            return false;
+        }
+        else if(antall == 1){
+            hode = null;
+            hale = null;
+        }
+        else if(q == hode){
+            hode = hode.neste;
+            hode.forrige = null;
+        }
+        else if(q == hale){
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+        else{
+            Node<T> r = q.neste;
+            p.neste = q.neste;
+            r.forrige = q.forrige;
+        }
+        q.verdi = null;
+        q.neste = null;
+        q.forrige = null;
+
+        antall--;
+        endringer++;
+
+        return true;
     }
 
+    //Oppgave 6 del 1
     @Override
     public T fjern(int indeks) {
 
-        indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
+        indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig. Listen vil kaste en error hvis listen er tom fordi hvis indeks = 0 og antall = 0 og i ternary if setningen er indeks !> antall.
 
         T temp;                           // hjelpevariabel
 
