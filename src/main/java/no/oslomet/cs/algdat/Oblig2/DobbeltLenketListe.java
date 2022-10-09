@@ -96,7 +96,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                     // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til)                           // fra er større enn til
             throw new IllegalArgumentException
@@ -130,7 +130,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean tom() {
         //Returerner true dersom antall = 0
         return antall == 0;
-        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -138,24 +137,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Gir feilmelding dersom verdi er null
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
 
-        //Indekskontroll?
-
-        Node<T> node = new Node<>(verdi);
-
-        if (tom()) {
-            hode = hale = node;
-            antall++;
-            endringer++;
-            return true;
-        } else {
-            node = hale.forrige;
-            hale = node.neste;
-            node = hale;
-            antall++;
-            endringer++;
-            return true;
+        if(tom() == true){
+            hode = hale = new Node<>(verdi, null, null);
         }
-        //throw new UnsupportedOperationException();
+        else  // ny verdi bakerst
+        {
+            hale = hale.neste = new Node<>(verdi, hale, null);
+        }
+
+        antall++;      // ny verdi i listen
+        endringer++;   // en endring i listen
+
+        return true;
     }
 
     @Override
@@ -196,10 +189,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
 
-        if(antall == 0){
-            throw new IndexOutOfBoundsException("Indeks out of bounds fordi listen er tom!");
-        }
-
         if (verdi == null){
             return false;          // ingen nullverdier i listen
         }
@@ -211,7 +200,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if (q.verdi.equals(verdi)){
                 break;       // verdien funnet
             }
-            p = q; q = q.neste;                     // p er forgjengeren til q
+            p = q;
+            q = q.neste;                     // p er forgjengeren til q
         }
         if(q == null){
             return false;
