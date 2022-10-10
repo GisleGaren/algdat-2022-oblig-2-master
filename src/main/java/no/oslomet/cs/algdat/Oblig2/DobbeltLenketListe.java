@@ -181,7 +181,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean inneholder(T verdi) {
         // returnerer true om indexen til verdi er over -1.
-        return indeksTil(verdi) <= 0;
+        return indeksTil(verdi) >= 0;
     }
 
     @Override
@@ -201,7 +201,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (i < antall/2) {
             // leter etter verdi fra halen og innover
             for (i = 0; i < antall; i++){
-                if (p.verdi == verdi){
+                if (p.verdi.equals(verdi)){
                     // returnerer index til verdi om den blir funnet
                     return i;
                 }
@@ -211,7 +211,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         else {
             // leter etter verdi fra hodet og innover
             for (i = antall - 1; i >= 0; i--){
-                if (q.verdi == verdi){
+                if (q.verdi.equals(verdi)){
                     // returnerer verdi til index om den blir funnet
                     return i;
                 }
@@ -330,19 +330,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
         Node<T> p = hode;
 
+
         //1. metode:
         for (; p!= null; p = p.neste){
             p.forrige = null;
             p.neste = null;
             p.verdi = null;
         }
-
         //2. metode:
         /*
-        int i = 0;
-        while (antall > 0){
+        for (int i = 0; i < antall; i++){
             fjern(i);
-            i++;
         }
         */
 
@@ -350,6 +348,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         hale = null;
         antall = 0;
         endringer ++;
+        // løsning 1 er mer effektiv ettersom løsning 2 krever flere operasjoner i gjennomsnitt.
     }
 
     @Override
