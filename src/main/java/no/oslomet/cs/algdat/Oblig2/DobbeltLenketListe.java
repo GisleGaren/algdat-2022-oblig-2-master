@@ -353,25 +353,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        int elementer = liste.antall();
-
+        int lengde = liste.antall() - 1;
+        boolean sortert = false;
         if(!liste.tom()) {
             //boblesortering
 
-            for (int n = elementer; n > 1; n--) {           //Intervallgrense
-                for (int i = 1; i < n; i++) {
+            while (!sortert) {
+                sortert = true;
+                for (int i = 0; i < lengde; i++) {
                     T val1 = liste.hent(i);
                     T val2 = liste.hent(i+1);
-                    if (c.compare(liste.hent(i - 1), liste.hent(i)) > 0) {
+                    if (c.compare(val1,val2) > 0) {
+                        sortert = false;
                         liste.oppdater(i, val2);
                         liste.oppdater(i+1, val1);
                     }
                 }
+                lengde--;
             }
         }
         // throw new UnsupportedOperationException();
     }
 
+    public static void main(String[] args) {
+        String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+
+        Liste<String> liste = new DobbeltLenketListe<>(navn);
+
+        DobbeltLenketListe.sorter(liste, Comparator.naturalOrder());
+
+        System.out.println(liste);
+    }
 
 } // class DobbeltLenketListe
 
