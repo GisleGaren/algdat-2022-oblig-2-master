@@ -441,11 +441,52 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return current;
         }
 
+        // Oppgave 9
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
-        }
+            if (!fjernOK){
+                throw new IllegalStateException("Ulovlig tilstand!");
+            }
 
+            if (iteratorendringer != endringer){
+                throw new ConcurrentModificationException("Listen har blitt endret!");
+            }
+
+            fjernOK = false;            // Det skal ikke være mulig å kalle remove rett etter hverandre
+            Node<T> q = hode;
+
+            if(antall == 1){
+                hode = null;
+                hale = null;
+            }
+            else if(denne == null){             // Dersom den siste noden skal fjernes
+                q = hale;
+                hale = q.forrige;
+                hale.neste = null;
+            }
+            else if(denne.forrige == null){
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+            else{
+                Node<T> r = hode;
+
+                while(r.neste.neste != denne){
+                    r = r.neste;
+                }
+
+                q = r.neste;
+                r.neste = denne;
+                denne.forrige = r;
+            }
+            q.verdi = null;
+            q.neste = null;
+            q.forrige = null;
+
+            antall--;
+            endringer++;
+            iteratorendringer++;
+        }
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
