@@ -158,22 +158,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (indeks == 0)                     // ny verdi skal ligge først
         {
-            hode = new Node<>(verdi);    // legges først
+            hode = new Node<>(verdi, null, hode);    // legges først
             if (antall == 0) hale = hode;      // hode og hale går til samme node
         }
         else if (indeks == antall)           // ny verdi skal ligge bakerst
         {
-            hale = hale.neste = new Node<>(verdi);  // legges bakerst
+            hale = hale.neste = new Node<>(verdi, hale, null);  // legges bakerst
         }
         else
         {
-            Node<T> p = hode;                  // p flyttes indeks - 1 ganger
-            for (int i = 1; i < indeks; i++) p = p.neste;
-
-            p.neste = new Node<>(verdi);  // verdi settes inn i listen
+            Node<T> p = finnNode(indeks);                  // p flyttes indeks - 1 ganger
+            p.forrige = p.forrige.neste = new Node<>(verdi, p.forrige, p);  // verdi settes inn i listen
         }
-        endringer++;
-        antall++;                            // listen har fått en ny verdi
+        endringer++;             // en endring ble gjort i listen
+        antall++;                // listen har fått en ny verdi
 
     }
 
