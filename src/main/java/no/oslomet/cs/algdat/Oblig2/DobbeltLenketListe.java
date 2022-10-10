@@ -4,9 +4,7 @@ package no.oslomet.cs.algdat.Oblig2;
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
 // Test 123
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -154,10 +152,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         //throw new UnsupportedOperationException();
     }
-
+    //Oppgave 5
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+
+        indeksKontroll(indeks, true);  // Se Liste, true: indeks = antall er lovlig
+
+        if (indeks == 0)                     // ny verdi skal ligge først
+        {
+            hode = new Node<>(verdi);    // legges først
+            if (antall == 0) hale = hode;      // hode og hale går til samme node
+        }
+        else if (indeks == antall)           // ny verdi skal ligge bakerst
+        {
+            hale = hale.neste = new Node<>(verdi);  // legges bakerst
+        }
+        else
+        {
+            Node<T> p = hode;                  // p flyttes indeks - 1 ganger
+            for (int i = 1; i < indeks; i++) p = p.neste;
+
+            p.neste = new Node<>(verdi);  // verdi settes inn i listen
+        }
+        endringer++;
+        antall++;                            // listen har fått en ny verdi
+
     }
 
     @Override
@@ -281,7 +302,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException();
+            //throw new UnsupportedOperationException();
+            if(iteratorendringer != endringer){
+                throw new ConcurrentModificationException();
+            }
+            if(!hasNext()){
+                throw new NoSuchElementException("Listen er tom");
+            }
+            fjernOK = true;
+            T current = denne.verdi;
+            denne = denne.neste;
+
+            return current;
         }
 
         @Override
