@@ -357,19 +357,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if(!liste.tom()) {
             //boblesortering
-            int mi = 0;
-            T mv = liste.hent(0);
 
             for (int n = elementer; n > 1; n--) {           //Intervallgrense
                 for (int i = 1; i < n; i++) {
+                    T val1 = liste.hent(i);
+                    T val2 = liste.hent(i+1);
                     if (c.compare(liste.hent(i - 1), liste.hent(i)) > 0) {
-                        mv = liste.hent(i);
-                        mi = i;
+                        liste.oppdater(i, val2);
+                        liste.oppdater(i+1, val1);
                     }
-                    T tempP = liste.hent(mi);
-                    T tempQ = liste.hent(i-1);
-                    liste.oppdater(mi, tempQ);
-                    liste.oppdater(i-1,mv);
                 }
             }
         }
