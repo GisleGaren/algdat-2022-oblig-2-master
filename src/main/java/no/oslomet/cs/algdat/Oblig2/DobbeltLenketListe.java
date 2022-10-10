@@ -36,7 +36,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        hode = hale = null;
+        antall = 0;
+        endringer = 0;
     }
 
     public DobbeltLenketListe(T[] a) {
@@ -91,7 +93,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                     // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til)                           // fra er større enn til
             throw new IllegalArgumentException
@@ -133,24 +135,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Gir feilmelding dersom verdi er null
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
 
-        //Indekskontroll?
-
-        Node<T> node = new Node<>(verdi);
-
-        if (tom()) {
-            hode = hale = node;
-            antall++;
-            endringer++;
-            return true;
-        } else {
-            node = hale.forrige;
-            hale = node.neste;
-            node = hale;
-            antall++;
-            endringer++;
-            return true;
+        if(tom() == true){
+            hode = hale = new Node<>(verdi, null, null);
         }
-        //throw new UnsupportedOperationException();
+        else  // ny verdi bakerst
+        {
+            hale = hale.neste = new Node<>(verdi, hale, null);
+        }
+
+        antall++;      // ny verdi i listen
+        endringer++;   // en endring i listen
+
+        return true;
     }
     //Oppgave 5
     @Override
@@ -241,12 +237,92 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+
+        if (verdi == null){
+            return false;          // ingen nullverdier i listen
+        }
+
+        Node<T> q = hode, p = null;               // hjelpepekere
+
+        while (q != null)                         // q skal finne verdien t
+        {
+            if (q.verdi.equals(verdi)){
+                break;       // verdien funnet
+            }
+            p = q; q = q.neste;                     // p er forgjengeren til q
+        }
+        if(q == null){
+            return false;
+        }
+        else if(antall == 1){
+            hode = null;
+            hale = null;
+        }
+        else if(q == hode){
+            hode = hode.neste;
+            hode.forrige = null;
+        }
+        else if(q == hale){
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+        else{
+            Node<T> r = q.neste;
+            p.neste = q.neste;
+            r.forrige = q.forrige;
+        }
+        q.verdi = null;
+        q.neste = null;
+        q.forrige = null;
+
+        antall--;
+        endringer++;
+
+        return true;
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+
+        indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
+
+        T temp;                           // hjelpevariabel
+
+        if(antall == 1){         // Dersom det bare er en node i listen skal hode og hale være null. hode.neste og hode.forrige peker allerede på null.
+            temp = hode.verdi;
+            hode = null;
+            hale = null;
+        }
+        else if (indeks == 0)                     // skal første verdi fjernes?
+        {
+            temp = hode.verdi;                 // tar vare på verdien som skal fjernes
+            hode = hode.neste;                 // hode flyttes til neste node
+            hode.forrige = null;               // Vi vil at det nye hode ikke skal peke tilbake på den gamle hode noden.
+        }
+        else if(indeks == antall-1){
+            Node<T> p = finnNode(indeks - 1);  // p er noden foran den som skal fjernes
+            Node<T> q = p.neste;               // q skal fjernes
+            temp = q.verdi;
+            hale = q.forrige;
+            p.neste = null;
+            q.forrige = null;
+        }
+        else
+        {
+            Node<T> p = finnNode(indeks - 1);  // p er noden foran den som skal fjernes
+            Node<T> q = p.neste;               // q skal fjernes
+            Node<T> r = q.neste;               // r trenger vi for å ordne bakoverpekere
+
+            temp = q.verdi;                    // tar vare på verdien som skal fjernes
+
+            p.neste = q.neste;                 // "hopper over" q
+            r.forrige = q.forrige;
+        }
+
+        antall--;                            // reduserer antallet
+        endringer++;                         // øker endringer
+        return temp;                         // returner fjernet verdi
+
     }
 
     //Oppgave 7
@@ -394,7 +470,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 lengde--;
             }
         }
-        // throw new UnsupportedOperationException();
     }
 
     public static void main(String[] args) {
