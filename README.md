@@ -14,7 +14,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Gaute har hatt hovedansvar for oppgave 1, 2 og 10
 * Gisle har hatt hovedansvar for oppgave 3, 6 og 9. 
 * Andre har hatt hovedansvar for oppgave 4 og 7. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8.
+* Niklas har hatt hovedansvar for oppgave 5 og 8.
 
 # Oppgavebeskrivelse
 
@@ -58,7 +58,10 @@ opprettet i linje 173. Til slutt vil metoden inkrementere endringer++ og antall+
 
 
 
-I oppgave 6 så gikk vi frem ved å 
+I oppgave 6 begynte jeg med T fjern() metoden hvor jeg sjekker at indeksen er gyldig ved hjelp av indeksKontroll metoden i Liste 
+grensesnittet. Vi har en hjelpevariabel T temp som skal oppdateres i hver if setning. Her har jeg holdt rede på de ulike situasjonene som dukker opp.
+Dersom antall er lik 1, skal hode og hale = null og vi returnerer temp verdien. Dersom antall > 1 og indeks == 0, skal vi flytte hode pekeren til neste node
+og sette den nye hode.forrige til null. Else if betingelsen er når siste node skal fjernes. Da danner vi to hjelpepekere p og q hvor q er pekeren på noden som skal fjernes og p er den noden som kommer rett før. Vi returnerer q.verdi og setter halen til p som er pekeren på noden som skal være halen. Deretter tilordner vi de nye pekerene til halen. Til slutt i else{} skal vi ha 3 pekere, p som er noden foran den som skal fjernes, q som er noden til den som skal fjernes og r som er foran q. Vi returnerer q.verdi igjen og p og r peker på sine respektive nye noder som vist i kode linjene 318 og 319. Antall reduseres med 1 og endringer økes med 1. Boolean fjern er veldig lik den bare at vi ikke kan bruke finnNode() metoden fordi vi har ikke indeksen. Vi bruker en while løkke som går gjennom node verdiene frem til input verdi ==q.verdi. Ellers veldig lik T fjern(). Når det gjelder effektivitet, har den bestått prøven på PCen min.
 
 
 I oppgave 7 så gikk jeg frem ved å først sette pekeren på hode-noden. 
@@ -83,7 +86,8 @@ for å luke ut feiltilfeller. Deretter brukte jeg metoden finnNode(indeks) for
 resten var likt som den andre konstruktøren.
 
 
-I oppgave 9 så gikk vi frem ved å 
+I oppgave 9 begynner remove() metoden med å passe på at fjernOK ikke er false. Dette er for å hindre at remove() metoden gjentas rett etter hverandre. Vi skal også
+passe på at iteratorendringer == endringer ellers vil listen bli endret når vi skal foreta endringer i listen via remove. Vi danner en hjelpe peker q = hode. Metoden er nå veldig lik de fjern metodene bare at nå må vi passe på hvor denne pekeren peker på. Dersom antall == 1, skal både hode og hale peke på null. Dersom denne == null betyr det at den siste noden skal fjernes fordi etter next() metoden vil denne automatisk flytte til neste node. Da skal q peke på hale og pekeren justeres på lignende måte som i oppgave 6. Dersom denne.forrige == null betyr det at vi er på hode noden. Gjør som i oppgave 6 igjen. Den siste else if betingelsen var veldig viktig. Dersom den ikke ble med, hadde while løkken i else{} fortsettet til uendelig. Dette er fordi i else{} har vi en r hjelpepeker som sier at dersom r.neste.neste != denne, skal den fortsette. Hvis denne er på node indeks 1, vil while løkken hoppe over den og fortsette til uendelig. Til slutt i else{} skal q noden fjernes og alle tilsvarende pekere justeres på samme måte som i oppgave 6. Antall reduseres med 1 fordi vi har 1 færre node i listen, endringer i listen har økt med 1 og til slutt har vi en iteratorendring som har økt med 1.
 
 
 I oppgave 10 gikk jeg frem ved å opprette en boolsk variabel "sortert" som skal hjelpe med å sjekke om listen er sortert. 
