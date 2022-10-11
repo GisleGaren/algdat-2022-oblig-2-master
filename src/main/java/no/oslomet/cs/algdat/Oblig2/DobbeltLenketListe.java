@@ -6,7 +6,6 @@ package no.oslomet.cs.algdat.Oblig2;
 // Test 123
 import java.util.*;
 
-
 public class DobbeltLenketListe<T> implements Liste<T> {
 
     /**
@@ -69,7 +68,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
     }
 
-    private Node<T> finnNode(int indeks){ //
+    // Oppgave 3a)
+    private Node<T> finnNode(int indeks){ // Denne metoden skal finne noden til en
         Node<T> p = hode;
         Node<T> q = hale;
         if(indeks < (antall/2)){
@@ -101,7 +101,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3b)
-    public Liste<T> subliste(int fra, int til) { // WIP
+    public Liste<T> subliste(int fra, int til) {
         fratilKontroll(antall,fra,til);
         Liste<T> liste = new DobbeltLenketListe<>();
         Node<T> p = hode;
@@ -457,6 +457,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Oppgave 9
         @Override
         public void remove() {
+
             if (!fjernOK){
                 throw new IllegalStateException("Ulovlig tilstand!");
             }
@@ -477,7 +478,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hale = q.forrige;
                 hale.neste = null;
             }
-            else if(denne.forrige == null){
+            else if(denne.forrige == null){ // Den første noden skal fjernes
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+            else if(hode.neste == denne){
                 hode = hode.neste;
                 hode.forrige = null;
             }
