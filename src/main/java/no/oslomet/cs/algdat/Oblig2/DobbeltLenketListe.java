@@ -179,8 +179,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //Oppgave 4
     @Override
     public boolean inneholder(T verdi) {
-        // returnerer true om indexen til verdi er over -1.
-        return indeksTil(verdi) >= 0;
+        return indeksTil(verdi) >= 0; // returnerer true om indexen til verdi er over -1.
     }
     // Oppgave 3a)
     @Override
@@ -192,29 +191,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //Oppgave 4
     @Override
     public int indeksTil(T verdi) {
-        // index
-        int i = 0;
+        int i = 0; // index teller
         Node<T> p = hode;
         Node<T> q = hale;
 
-        if (i < antall/2) {
-            // leter etter verdi fra halen og innover
+        if (i < antall/2) { // avgjør om vi skal lete fra hode eller hale.
             for (i = 0; i < antall; i++){
-                if (p.verdi.equals(verdi)){
+                if (p.verdi.equals(verdi)){ // metode for å finne "verdi" i p.
                     // returnerer index til verdi om den blir funnet
                     return i;
                 }
-                p = p.neste;
+                p = p.neste; // hvis verdien ikke blir funnet sjekker vi neste node siden vi har startet helt til venstre.
             }
         }
         else {
             // leter etter verdi fra hodet og innover
             for (i = antall - 1; i >= 0; i--){
-                if (q.verdi.equals(verdi)){
+                if (q.verdi.equals(verdi)){ // metode for å finne "verdi" i p.
                     // returnerer verdi til index om den blir funnet
                     return i;
                 }
-                q = q.forrige;
+                q = q.forrige; // hvis verdien ikke blir funnet sjekker vi forrige node siden vi har startet helt til høyre.
             }
         }
         // returnerer -1 om verdi er null
@@ -332,24 +329,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p = hode;
 
         //1. metode:
-        for (; p!= null; p = p.neste){
-            p.forrige = null;
-            p.neste = null;
-            p.verdi = null;
+        for (; p!= null; p = p.neste){ // sjekker at p ikke er null før vi går videre.
+            p.forrige = null; // nullstiller nåværende node
+            p.neste = null; // nullstiller peker
+            p.verdi = null; // nullstiller peker
         }
 
         //2. metode:
         /*
-        for (int i = 0; i < antall; i++){
-            fjern(i);
-            i++;
+        for (int i = 0; i < antall; i++){ // forløkke for å gå gjennom hver node i p.
+            fjern(i); // kaller på "fjern()" metoden.
+            i++; // endrer node
         }
         */
 
-        hode = null;
-        hale = null;
-        antall = 0;
-        endringer ++;
+        hode = null; // nullstiller første node til slutt
+        hale = null; // nullstiller også siste node
+        antall = 0; // setter antall til 0 siden det ikke er flere noder.
+        endringer ++; // øker endringer
         // løsning 1 er mer effektiv ettersom løsning 2 krever flere operasjoner i gjennomsnitt.
     }
 

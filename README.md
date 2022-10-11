@@ -4,7 +4,7 @@ Denne oppgaven er en innlevering i Algoritmer og Datastrukturer.
 Oppgaven er levert av følgende studenter:
 
 * Gaute Kjelstadli, 
-* Andre Gregussen, 
+* Andre Gregussen, s364562, s364562@oslomet.no
 * Niklas Havnaas, s356237, s356237@oslomet.com
 * Gisle Garen, s351893, s351893@oslomet.no
 
@@ -12,7 +12,7 @@ Oppgaven er levert av følgende studenter:
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Gisle har hatt hovedansvar for oppgave 3, 6 og 9. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
+* Andre har hatt hovedansvar for oppgave 4 og 7. 
 * Fatima har hatt hovedansvar for oppgave 7 og 8. 
 * Vi har i fellesskap løst oppgave 10. 
 
@@ -27,7 +27,12 @@ I oppgave 2 så brukte vi en til å
 I oppgave 3 begynte jeg på a) Hvor jeg skulle lage finnNode() metoden. Denne returnerer indeksen avhengig av om indeksen er mindre eller større enn antall/2. Dette var for å effektivisere 
 
 
-I oppgave 4 så gikk vi frem ved å 
+I oppgave 4 startert jeg først med å lete gjennom hele arrayet gjennom hode-noden, men skjønte fort at dette var en innefektiv algoritme.
+Jeg endret dermed koden til at det var en peker på hode-noden og en på hale-noden.
+ved å kontrollere om indeksen vi lette etter var større eller mindre enn antall/2.
+gikk deretter frem med å legge inn en if-setning for å kontrollere verdien med indeksen.
+skjønte deretter at jeg trengte en for-løkke for å loope gjennom nodene slik at hvis verdien vi lette etter ikke ble funnet gikk vi videre.
+I inneholder() sjekket jeg kun om indeksen var større om null, ettersom at hvis indeksen ikke finnes vil den bli returnert som -1.
 
 
 I oppgave 5 kontrollerte jeg først inputvalidering med indeksKontroll() og Objects.requireNonNull()
@@ -43,7 +48,12 @@ opprettet i linje 173. Til slutt vil metoden inkrementere endringer++ og antall+
 I oppgave 6 så gikk vi frem ved å 
 
 
-I oppgave 7 så gikk vi frem ved å 
+I oppgave 7 så gikk jeg frem ved å først sette pekeren på hode-noden. 
+Deretter startet jeg den første metoden og sjekket jeg at p sin verdi ikke var null ettersom at den hadde vært null om nodene allerede var tomme.
+hvis for-løkken går gjennom tømmer vi verdien i noden og pekerene dens og deretter går for-løkken videre.
+Den andre metoden går ut på en forløkke som endrer index for hver runde hvor det gjøres et kall på "fjern()".
+ved å bruke "fjern()" vil noden nullstilles og pekerene fjernes slik at det ikke var nødvendig med mer kode i for-løkken.
+Avsluttningsvis vil hode- og hale-noden nullstilles, antallet blir til 0 og endringer økes.
 
 
 I oppgave 8 startet jeg med deloppgave a og lagde metoden T next().
