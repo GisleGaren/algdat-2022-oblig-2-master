@@ -29,7 +29,15 @@ Videre går vi inn i en while-løkke så lenge det er flere elementer å legge t
 omvendtString() følger samme logikk, men starter på halen og bruker pekere til forrige node i stedet for å få omvendt rekkefølge.
 
 
-I oppgave 3 begynte jeg på a) Hvor jeg skulle lage finnNode() metoden. Denne returnerer indeksen avhengig av om indeksen er mindre eller større enn antall/2. Dette var for å effektivisere 
+I oppgave 3 begynte jeg på a) Hvor jeg skulle lage finnNode() metoden. Denne returnerer indeksen avhengig av om indeksen
+er mindre eller større enn antall/2. Dette var for å effektivisere søket. Hent() returnerer verdien til finnNode(indeks), 
+men pass på at indekskontrollen er false fordi vi vil ikke at indeks == antall skal være en gyldig parameter. Oppdater()
+metoden passer på at vi ikke kan sette inn en null verdi og at vi finner noden til indeksen og setter pekeren p på den. 
+Deretter skal vi ha en tilsvarende bytt metode bare for lenketlister og ta vare på den gamle verdien til noden samtidig
+som vi bytter den gamle med den nye verdien. Til slutt returneres den gamle verdien. I subliste() 3b) skal vi lage en liste
+av grensesnittet Liste. Vi har en while løkke som fortsetter så lenge p ikke er lik null. Endringer skal økes med 1 hver
+iterasjon i løkken. Dersom endringer er i grensen fra til, skal vi legge til node verdien i listen. Til slutt returnerer vi
+listen.
 
 
 I oppgave 4 startert jeg først med å lete gjennom hele arrayet gjennom hode-noden, men skjønte fort at dette var en innefektiv algoritme.
