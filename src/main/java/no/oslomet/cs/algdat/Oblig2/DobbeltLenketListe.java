@@ -40,6 +40,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer = 0;
     }
 
+    //Oppgave 1)
     public DobbeltLenketListe(T[] a) {
         //Får feilmelding dersom a == null
         Objects.requireNonNull(a,"Tabellen a kan ikke være nulL!");
@@ -116,6 +117,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return liste;
     }
 
+    //Oppgave 1)
     @Override
     public int antall() {
         //Returnerer antall
@@ -123,6 +125,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
     }
 
+    //Oppgave 1)
     @Override
     public boolean tom() {
         //Returerner true dersom antall = 0
@@ -350,6 +353,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // løsning 1 er mer effektiv ettersom løsning 2 krever flere operasjoner i gjennomsnitt.
     }
 
+    //Oppgave2
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();          //Benytter StringBuilder for å opprette tegnstrengen.
@@ -373,6 +377,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
     }
 
+    //Oppgave 2)
     //Gjør akkuratt det samme som toString(), men skal gå baklengs
     public String omvendtString() {
         StringBuilder s = new StringBuilder();

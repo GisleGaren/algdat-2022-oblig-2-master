@@ -3,7 +3,7 @@
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
 
-* Gaute Kjelstadli, 
+* Gaute Kjelstadli, s362066, s362066@oslomet.no
 * Andre Gregussen, s364562, s364562@oslomet.no
 * Niklas Havnaas, s356237, s356237@oslomet.com
 * Gisle Garen, s351893, s351893@oslomet.no
@@ -11,17 +11,22 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
+* Gaute har hatt hovedansvar for oppgave 1, 2 og 10
 * Gisle har hatt hovedansvar for oppgave 3, 6 og 9. 
 * Andre har hatt hovedansvar for oppgave 4 og 7. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+* Fatima har hatt hovedansvar for oppgave 7 og 8.
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å 
+I oppgave 1 gikk jeg frem ved å følge kompendiet. funksjonen antall() skal returnere antall elementer i listen mens tom() skal sjekke om listen er tom.
+Konstruktøren er forholdsvis lik som den i kompendiet, men vi må passe på å også ha peker til forrige. Videre fant jeg det første elementet som ikke
+er null: her oppretter vi noden hode. Vi går gjennom resten av verdiene i t[] så lenge a[i] ikke er null. Til slutt blir halen og pekerene tilordnet.
 
 
-I oppgave 2 så brukte vi en til å
+I oppgave 2 dannet jeg en toString() og en omvendtString() metode ved hjelp av StringBuilder. Formatet jeg skulle oppnå var:"[1, 2, 3]".
+Først "appendet" jeg '[' til stringbuilderen, så sjekker jeg om listen ikke er tom og lukker klammeparentesen dersom den er det. Altså: "[]".
+Videre går vi inn i en while-løkke så lenge det er flere elementer å legge til. Legger til komma, mellomrom og neste verdi til vi er ferdig.
+omvendtString() følger samme logikk, men starter på halen og bruker pekere til forrige node i stedet for å få omvendt rekkefølge.
 
 
 I oppgave 3 begynte jeg på a) Hvor jeg skulle lage finnNode() metoden. Denne returnerer indeksen avhengig av om indeksen er mindre eller større enn antall/2. Dette var for å effektivisere 
@@ -73,6 +78,9 @@ resten var likt som den andre konstruktøren.
 I oppgave 9 så gikk vi frem ved å 
 
 
-I oppgave 10 så gikk vi frem ved å 
-
+I oppgave 10 gikk jeg frem ved å opprette en boolsk variabel "sortert" som skal hjelpe med å sjekke om listen er sortert. 
+Først sjekker jeg om listen ikke er tom, så går vi inn i en while-løkke dersom variabelen "sortert" er usann.
+Når vi har gått inn i while-løkken setter vi "sortert"= true og  sammenligner to og to elementer ved hjelp av en for-løkke.
+Bruker "c.compare(val1,val2) > 0" for å sjekke om rekkefølgen er riktig. Dersom det er feil rekkefølge, setter vi sortert = false
+og vi bruker metoden oppdater() for å endre verdi på nodene. Til slutt avtar intervallet. - Gjentar dette til vi har en sortert liste
 
