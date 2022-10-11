@@ -6,12 +6,12 @@ Oppgaven er levert av følgende studenter:
 * Gaute Kjelstadli, 
 * Andre Gregussen, 
 * Niklas Havnaas, s356237, s356237@oslomet.com
-* Gisle Garen, 
+* Gisle Garen, s351893, s351893@oslomet.no
 
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
+* Gisle har hatt hovedansvar for oppgave 3, 6 og 9. 
 * Else har hatt hovedansvar for oppgave 2, 4, og 6. 
 * Fatima har hatt hovedansvar for oppgave 7 og 8. 
 * Vi har i fellesskap løst oppgave 10. 
@@ -24,7 +24,7 @@ I oppgave 1 så gikk vi frem ved å
 I oppgave 2 så brukte vi en til å
 
 
-I oppgave 3 så gikk vi frem ved å 
+I oppgave 3 begynte jeg på a) Hvor jeg skulle lage finnNode() metoden. Denne returnerer indeksen avhengig av om indeksen er mindre eller større enn antall/2. Dette var for å effektivisere 
 
 
 I oppgave 4 så gikk vi frem ved å 
