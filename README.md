@@ -2,8 +2,11 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S123456, s123456@oslomet.no
-* ...
+
+* Gaute Kjelstadli, 
+* Andre Gregussen, 
+* Niklas Havnaas, s356237, s356237@oslomet.com
+* Gisle Garen, 
 
 # Arbeidsfordeling
 
@@ -15,6 +18,45 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
+I oppgave 1 så gikk vi frem ved å 
 
-I oppgave 2 så brukte vi en ... til å ...
+
+I oppgave 2 så brukte vi en til å
+
+
+I oppgave 3 så gikk vi frem ved å 
+
+
+I oppgave 4 så gikk vi frem ved å 
+
+
+I oppgave 5 så gikk vi frem ved å 
+
+
+
+I oppgave 6 så gikk vi frem ved å 
+
+
+I oppgave 7 så gikk vi frem ved å 
+
+
+I oppgave 8 startet jeg med deloppgave a og lagde metoden T next().
+Hvis iteratorendringer er ulik endringer ville metoden kaste en
+ConcurrentModificationException. Dermed skal koden sjekke om listen er tom
+med å kalle metoden hasNext(), vis hasNext() er false vil koden kaste en 
+NoSuchElementException fordi den er tom og ikke har noen next. Etter det
+settes fjernK til sann, vedrien current returneres og denne blir flyttet
+til denne sin neste i listen. Deloopgave b ble løst bare ved å returnere et
+kall fra DobbeltLenketListeIterator(). Samme som i oppgave 8 d) bare at den
+tok inn indeksen som parameter. I oppgave 8 c) startet jeg med indeksKontroll()
+for å luke ut feiltilfeller. Deretter brukte jeg metoden finnNode(indeks) for
+å sette 'denne' pekeren til den anngående indeksen på den tilhørende noden.
+resten var likt som den andre konstruktøren.
+
+
+I oppgave 9 så gikk vi frem ved å 
+
+
+I oppgave 10 så gikk vi frem ved å 
+
+

@@ -155,17 +155,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Objects.requireNonNull(verdi, "Kan ikke være null-verdier");
         indeksKontroll(indeks, true);
 
-        if(indeks < 0){
-            throw new IndexOutOfBoundsException(indeks + " kan ikke være negativ");
-        }else if(antall < indeks){
-            throw new IndexOutOfBoundsException(indeks + " kan ikke være større enn antall " + antall);
-        }
         if (indeks == 0)                     // ny verdi skal ligge først
         {
-            hode = new Node<>(verdi, null, hode);    // legges først
-            if (antall == 0) hale = hode;      // hode og hale går til samme node
+            hode = new Node<>(verdi, null, hode); // legges først
+        if (antall == 0) {
+            hode = hale = new Node<>(verdi); // Tom liste
         }
-        else if (indeks == antall)           // ny verdi skal ligge bakerst
+    }else if (indeks == antall)           // ny verdi skal ligge bakerst
         {
             hale = hale.neste = new Node<>(verdi, hale, null);  // legges bakerst
         }
@@ -403,12 +399,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public Iterator<T> iterator() {
         //throw new UnsupportedOperationException();
-        return new DobbeltLenketListeIterator();
+        return new DobbeltLenketListeIterator(); //Returnerer instanse av iteratorklassen
     }
     //Oppgave 8 d)
     public Iterator<T> iterator(int indeks) {
         //throw new UnsupportedOperationException();
-        return new DobbeltLenketListeIterator(indeks);
+        return new DobbeltLenketListeIterator(indeks); //Returnerer instanse av iteratorklassen med indeks parameter
 
     }
 
@@ -425,12 +421,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Oppgave 8 c)
         private DobbeltLenketListeIterator(int indeks) {
             //throw new UnsupportedOperationException();
-            indeksKontroll(indeks, false);
+            indeksKontroll(indeks, false); //Luker ut feilsituasjoner
 
-            hode = finnNode(indeks);
-            denne = hode;
-            fjernOK = false;
-            iteratorendringer = endringer;
+            hode = finnNode(indeks);   //Finner noden til indeksen
+            denne = hode;      //setter denne pekeren til indeksen
+            fjernOK = false;   //Setter fjernOK til false
+            iteratorendringer = endringer;  //Sjekker om iteratorendringer = endringer
         }
 
         @Override
@@ -441,17 +437,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public T next() {
             //throw new UnsupportedOperationException();
-            if(iteratorendringer != endringer){
-                throw new ConcurrentModificationException();
+            if(iteratorendringer != endringer){   //Sjekker om endringene er like
+                throw new ConcurrentModificationException(); //Hvis de er ulike kastes Exception
             }
-            if(!hasNext()){
+            if(!hasNext()){  //Sjekker om listen har en neste, hvis ikke er listen tom
                 throw new NoSuchElementException("Listen er tom");
             }
-            fjernOK = true;
-            T current = denne.verdi;
-            denne = denne.neste;
+            fjernOK = true;   //
+            T current = denne.verdi;  //Lager en ny variabel som skal returnere verdien til denne før den blir endret.
+            denne = denne.neste; //Setter denne til denne.neste
 
-            return current;
+            return current; //Returnerer verdien til denne
         }
 
         // Oppgave 9
