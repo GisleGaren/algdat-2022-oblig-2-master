@@ -30,7 +30,13 @@ I oppgave 3 så gikk vi frem ved å
 I oppgave 4 så gikk vi frem ved å 
 
 
-I oppgave 5 så gikk vi frem ved å 
+I oppgave 5 kontrollerte jeg først inputvalidering med indeksKontroll() og Objects.requireNonNull()
+for å håndtere spesialtilfellene som kan oppstå. Hvis indeksen er null skal verdien legges inn først.
+Deretter hvis antall er 0 vil hale være lik hode fordi listen er tom, hvis listen ikke er tom, vil den heller
+lage en ny node som blir lagt først i listen. Hvis indeksen = antall skal den legges inn bakerst, hvis ingen
+av ifene trer i kraft vil det si at verdien skal et sted midt i listen. Da blir finnNode(indeks) metoden kaldt
+for å finne indeksen til verdien som skal legges inn. Verdien vil da bli lagt inn i listen og pekerne vil bli
+opprettet i linje 173. Til slutt vil metoden inkrementere endringer++ og antall++.
 
 
 

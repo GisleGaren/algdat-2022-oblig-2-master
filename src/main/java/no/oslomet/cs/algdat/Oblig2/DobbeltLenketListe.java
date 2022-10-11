@@ -155,20 +155,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Objects.requireNonNull(verdi, "Kan ikke være null-verdier");
         indeksKontroll(indeks, true);
 
-        if (indeks == 0)                     // ny verdi skal ligge først
+        if (indeks == 0)  // ny verdi skal ligge først
         {
-            hode = new Node<>(verdi, null, hode); // legges først
-        if (antall == 0) {
-            hode = hale = new Node<>(verdi); // Tom liste
-        }
-    }else if (indeks == antall)           // ny verdi skal ligge bakerst
+            if (antall == 0) {  //Listen er en tom liste
+                hode = hale = new Node<>(verdi);
+            }
+            else {
+                hode = hode.forrige = new Node<>(verdi, null, hode);  // Verdien legges først i listen
+            }
+    }else if (indeks == antall)  // ny verdi skal ligge bakerst
         {
             hale = hale.neste = new Node<>(verdi, hale, null);  // legges bakerst
         }
         else
         {
-            Node<T> p = finnNode(indeks);// p flyttes indeks - 1 ganger
-            p.forrige = p.forrige.neste = new Node<>(verdi, p.forrige, p);  // verdi settes inn i listen
+            Node<T> p = finnNode(indeks-1);  // p flyttes med (indeks - 1) ganger
+            p.neste.forrige = p.neste = new Node<>(verdi, p, p.neste);  // verdien blir satt inn i listen
         }
         endringer++;             // en endring ble gjort i listen
         antall++;                // listen har fått en ny verdi
