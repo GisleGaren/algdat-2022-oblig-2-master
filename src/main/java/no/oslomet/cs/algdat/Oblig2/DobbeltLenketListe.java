@@ -506,17 +506,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        int lengde = liste.antall() - 1;
-        boolean sortert = false;
-        if(!liste.tom()) {
+        int lengde = liste.antall() - 1;                                        //Øvre intervallgrense som skal brukes til boblesortering
+        boolean sortert = false;                                                //Boolsk variabel som er usann dersom listen ikke er sortert
+
+        if(!liste.tom()) {                                                      //Kode som kjøres dersom listen ikke er tom
             //boblesortering
 
-            while (!sortert) {
+            while (!sortert) {                                                  //Går inn while-løkken dersom listen ikke er sortert
                 sortert = true;
                 for (int i = 0; i < lengde; i++) {
+                    //Bytt-metoden
                     T val1 = liste.hent(i);
                     T val2 = liste.hent(i+1);
-                    if (c.compare(val1,val2) > 0) {
+                    if (c.compare(val1,val2) > 0) {                         //Sammenligner variablene og bytter plass dersom de ikke er i riktig rekkefølge
                         sortert = false;
                         liste.oppdater(i, val2);
                         liste.oppdater(i+1, val1);
